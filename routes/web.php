@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/user-registation',[UserController::class,'UserRegistration'])->name('user.registration');
+Route::post('/user-registation', [UserController::class, 'UserRegistration'])->name('user.registration');
+Route::post('/user-login', [UserController::class, 'UserLogin'])->name('user.Login');
