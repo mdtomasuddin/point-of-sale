@@ -55,8 +55,7 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'status' => 'Failed',
-                'message' => 'Unauthorized',
-
+                'message' => 'unauthorized',
             ]);
         }
     }
@@ -80,7 +79,7 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'status' => 'Failed',
-                'message' => 'Unauthorized',
+                'message' => 'unauthorized',
             ]);
         }
     }
@@ -107,7 +106,30 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'status' => 'Failed',
-                'message' => 'Unauthorized',
+                'message' => 'unauthorized',
+            ]);
+        }
+    }
+
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            $email = $request->header('email');
+            $password = $request->input('password');
+
+            User::where('email', '=', $email)->update(['password' => $password]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Request successfully',
+            ]);
+        
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'Failed',
+                'message' => 'Something Went Wrong ',
+                'message'=>$e->getMessage(),
+
             ]);
         }
     }
