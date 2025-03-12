@@ -12,6 +12,29 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    public function LoginPage()
+    {
+        return view('pages.auth.login-page');
+    }
+    public function RegistationPage()
+    {
+        return view('pages.auth.registration-page');
+    }
+    public function SendOTPPage()
+    {
+        return view('pages.auth.send-otp-page');
+    }
+    public function VerifyOTPPage()
+    {
+        return view('pages.auth.verify-otp-page');
+    }
+    public function resetPasswordPage()
+    {
+        return view('pages.auth.reset-pass-page');
+    }
+
+    //------------------------------------------
+
     public function UserRegistration(Request $request)
     {
         try {
@@ -50,8 +73,8 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'User login successfully',
-                'token' => $token,
-            ]);
+                // 'token' => $token,
+            ])->cookie('token',$token,60*24*60);
         } else {
             return response()->json([
                 'status' => 'Failed',
@@ -123,12 +146,11 @@ class UserController extends Controller
                 'status' => 'success',
                 'message' => 'Request successfully',
             ]);
-        
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'Failed',
                 'message' => 'Something Went Wrong ',
-                'message'=>$e->getMessage(),
+                'message' => $e->getMessage(),
 
             ]);
         }
