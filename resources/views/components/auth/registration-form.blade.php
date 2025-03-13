@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Mobile Number</label>
-                                <input id="mobile" placeholder="Mobile" class="form-control" type="mobile" />
+                                <input id="phone" placeholder="Mobile" class="form-control" type="mobile" />
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Password</label>
@@ -43,5 +43,41 @@
 </div>
 
 <script>
-  
+    async function onRegistration() {
+        let email = document.getElementById('email').value;
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let phone = document.getElementById('phone').value;
+        let password = document.getElementById('password').value;
+
+        if (email.length === 0) {
+            errorToast('Email is required')
+        } else if (firstName.length === 0) {
+            errorToast('First Name is required')
+        } else if (lastName.length === 0) {
+            errorToast('Last Name is required')
+        } else if (phone.length === 0) {
+            errorToast('Mobile is required')
+        } else if (password.length === 0) {
+            errorToast('Password is required')
+        } else {
+            showLoader();
+            let res = await axios.post("/user-registation", {
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                password: password
+            })
+            hideLoader();
+            if (res.status === 200 && res.data['status'] === 'success') {
+                successToast(res.data['message']);
+                setTimeout(() => {
+                    window.location.href = '/userLogin'
+                }, 2000)
+            } else {
+                errorToast(res.data['message'])
+            }
+        }
+    }
 </script>

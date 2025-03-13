@@ -15,7 +15,7 @@
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/config.js') }}"></script>
 </head>
- 
+
 <body>
 
     <div id="loader" class="LoadingOverlay d-none">
