@@ -16,14 +16,19 @@ Route::post('/verify-otp', [UserController::class, 'VerifyOTP'])->name('verify.o
 //token verification 
 // Route::post('/reset-password/{token}', [UserController::class, 'resetPassword'])->name('reset.password')->middleware([TokenVerificationMiddleware::class]);
 Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('reset.password')->middleware([TokenVerificationMiddleware::class]);
+Route::get('/user-profile', [UserController::class, 'userProfile'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/user-update-profile', [UserController::class, 'UpdateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/logout',[UserController::class,'UserLogout'])->name('user.logout');
+
+
+Route::get('/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
 // route page
-Route::get('/userLogin',[UserController::class,'LoginPage']);
-Route::get('/UserRegistration',[UserController::class,'RegistationPage']);
-Route::get('/userSendOtp',[UserController::class,'SendOTPPage']);
-Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
-Route::get('/resetPassword',[UserController::class,'resetPasswordPage']);
+Route::get('/userLogin', [UserController::class, 'LoginPage']);
+Route::get('/UserRegistration', [UserController::class, 'RegistationPage']);
+Route::get('/userSendOtp', [UserController::class, 'SendOTPPage']);
+Route::get('/verifyOtp', [UserController::class, 'VerifyOTPPage']);
+Route::get('/resetPassword', [UserController::class, 'resetPasswordPage'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/dashboard',[DashboardController::class,'deshboardPage']);
+Route::get('/dashboard', [DashboardController::class, 'deshboardPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/userProfile', [UserController::class, 'profilePage'])->middleware([TokenVerificationMiddleware::class]);

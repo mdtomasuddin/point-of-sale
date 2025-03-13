@@ -32,6 +32,10 @@ class UserController extends Controller
     {
         return view('pages.auth.reset-pass-page');
     }
+    public function profilePage()
+    {
+        return view('pages.dashboard.profile-page');
+    }
 
     //------------------------------------------
 
@@ -64,12 +68,12 @@ class UserController extends Controller
     {
         $count = User::where('email', '=', $request->input('email'))
             ->where('password', '=', $request->input('password'))
-            ->count();
+            ->select('id')->first();
         // return $count;
 
-        if ($count == 1) {
+        if ($count !== null) {
             //user login /jwt issue create
-            $token = JWTToken::CreateToken($request->input('email'));
+            $token = JWTToken::CreateToken($request->input('email'), $count->id);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User login successfully',
@@ -155,7 +159,47 @@ class UserController extends Controller
         }
     }
 
-    public function UserLogout(){
-        return redirect('/userLogin')->cookie('token','',-1);
+    public function UserLogout()
+    {
+        return redirect('/userLogin')->cookie('token', '', -1);
+    }
+
+
+    public function userProfile(Request $request)
+    {
+        $email = $request->header('email');
+        $user = User::where('email', '=', $email)->first();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Request successfully',
+            'data' => $user,
+        ]);
+    }
+
+    function UpdateProfile(Request $request)
+    {
+        try {
+            $email = $request->header('email');
+            $firstName = $request->input('firstName');
+            $lastName = $request->input('lastName');
+            $phone = $request->input('phone');
+            $password = $request->input('password');
+            User::where('email', '=', $email)->update([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'phone' => $phone,
+                'password' => $password
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Request Successful',
+            ], 200);
+        } catch (Exception $exception) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Something Went Wrong',
+            ], 200);
+        }
     }
 }
