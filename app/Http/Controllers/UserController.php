@@ -134,7 +134,6 @@ class UserController extends Controller
         }
     }
 
-
     public function resetPassword(Request $request)
     {
         try {
@@ -154,5 +153,9 @@ class UserController extends Controller
 
             ]);
         }
+    }
+
+    public function UserLogout(){
+        return redirect('/userLogin')->cookie('token','',-1);
     }
 }
