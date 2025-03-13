@@ -22,7 +22,7 @@ Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('
 Route::get('/userLogin',[UserController::class,'LoginPage']);
 Route::get('/UserRegistration',[UserController::class,'RegistationPage']);
 Route::get('/userSendOtp',[UserController::class,'SendOTPPage']);
-Route::get('/VerifyOtp',[UserController::class,'VerifyOTPPage']);
+Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
 Route::get('/resetPassword',[UserController::class,'resetPasswordPage']);
 
 Route::get('/dashboard',[DashboardController::class,'deshboardPage']);
