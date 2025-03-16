@@ -73,7 +73,7 @@
             <span class="side-bar-item-caption">Dashboard</span>
         </a>
 
-        <a href="#" class="side-bar-item">
+        <a href="{{ url('customerPage') }}" class="side-bar-item">
             <i class="bi bi-people"></i>
             <span class="side-bar-item-caption">Customer</span>
         </a>
@@ -112,20 +112,31 @@
 
 
     <script>
+        // function MenuBarClickHandler() {
+        //     let sideNav = document.getElementById('sideNavRef');
+        //     let content = document.getElementById('contentRef');
+
+        //     if (sideNav.classList.contains("side-nav-open")) {
+        //         sideNav.classList.add("side-nav-close");
+        //         sideNav.classList.remove("side-nav-open");
+        //         content.classList.add("content-expand");
+        //         content.classList.remove("content");
+        //     } else {
+        //         sideNav.classList.remove("side-nav-close");
+        //         sideNav.classList.add("side-nav-open");
+        //         content.classList.remove("content-expand");
+        //         content.classList.add("content");
+        //     }
+        // }
         function MenuBarClickHandler() {
             let sideNav = document.getElementById('sideNavRef');
             let content = document.getElementById('contentRef');
-            if (sideNav.classList.contains("side-nav-open")) {
-                sideNav.classList.add("side-nav-close");
-                sideNav.classList.remove("side-nav-open");
-                content.classList.add("content-expand");
-                content.classList.remove("content");
-            } else {
-                sideNav.classList.remove("side-nav-close");
-                sideNav.classList.add("side-nav-open");
-                content.classList.remove("content-expand");
-                content.classList.add("content");
-            }
+
+            sideNav.classList.toggle("side-nav-open");
+            sideNav.classList.toggle("side-nav-close");
+
+            content.classList.toggle("content-expand");
+            content.classList.toggle("content");
         }
     </script>
 
