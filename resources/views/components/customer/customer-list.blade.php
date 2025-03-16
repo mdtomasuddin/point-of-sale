@@ -7,7 +7,7 @@
                         <h4>Customer</h4>
                     </div>
                     <div class="align-items-center col">
-                        <button 
+                        <button data-bs-toggle="modal" data-bs-target="#create-modal"
                             class="float-end btn m-0 bg-gradient-primary">Create</button>
                     </div>
                 </div>
@@ -53,15 +53,12 @@
                         <td>${item['email']}</td>
                         <td>${item['mobile']}</td>
                         <td>
-                            <button class="btn editBtn btn-sm btn-outline-success">Edit</button>
-                            <button class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
+                            <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
+                            <button data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
                         </td>
                      </tr>`
             tableList.append(row)
         });
-
-
-
 
 
         new DataTable('#tableData', {
