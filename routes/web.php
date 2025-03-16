@@ -37,3 +37,8 @@ Route::get('/dashboard', [DashboardController::class, 'deshboardPage'])->middlew
 Route::get('/userProfile', [UserController::class, 'profilePage'])->middleware([TokenVerificationMiddleware::class]);
 
 // all page----------------
+Route::post('/create-customer', [CustomerController::class, 'CreateCustomer'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/list-customer', [CustomerController::class, 'CustomerList'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/customer-By-ID', [CustomerController::class, 'CustomerByID'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/update-customer', [CustomerController::class, 'CustomerUpdate'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/delete-customer', [CustomerController::class, 'CustomerDelete'])->middleware([TokenVerificationMiddleware::class]);
