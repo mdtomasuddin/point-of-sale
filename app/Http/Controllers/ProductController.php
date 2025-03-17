@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\View\View;
 
 class ProductController extends Controller
 {
 
-
+    function ProductPage()
+    {
+        return view('pages.dashboard.product-page');
+    }
 
     function CreateProduct(Request $request)
     {
         $user_id = $request->header('id');
-
         // Prepare File Name & Path
         $img = $request->file('img');
         $t = time();
@@ -37,6 +38,7 @@ class ProductController extends Controller
         ]);
     }
 
+
     function ProductByID(Request $request)
     {
         $user_id = $request->header('id');
@@ -52,15 +54,12 @@ class ProductController extends Controller
     }
 
 
-
-
     function UpdateProduct(Request $request)
     {
         $user_id = $request->header('id');
         $product_id = $request->input('id');
 
         if ($request->hasFile('img')) {
-
             // Upload New File
             $img = $request->file('img');
             $t = time();
