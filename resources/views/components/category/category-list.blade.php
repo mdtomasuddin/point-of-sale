@@ -55,7 +55,15 @@
                  </tr>`
             tableList.append(row)
         })
+        $('.editBtn').on('click', async function() {
+            let id = $(this).data('id');
+            await FillUpUpdateForm(id)
+            $("#update-modal").modal('show');
 
+
+        })
+
+      
 
         new DataTable('#tableData', {
             order: [
