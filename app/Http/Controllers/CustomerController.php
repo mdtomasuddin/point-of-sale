@@ -29,21 +29,19 @@ class CustomerController extends Controller
         return Customer::where('user_id', $user_id)->get();
     }
 
-    public function CustomerByID(Request $request)
-    {
-        $user_id = $request->header('id');
-        $customer_id = $request->input('id');
-        return Customer::where('id', $customer_id)->where('user_id', $user_id)->get();
+    function CustomerByID(Request $request){
+        $customer_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Customer::where('id',$customer_id)->where('user_id',$user_id)->first();
     }
 
-    public function CustomerUpdate(Request $request)
-    {
-        $user_id = $request->header('id');
-        $customer_id = $request->input('id');
-        return Customer::where('id', $customer_id)->where('user_id', $user_id)->update([
-            "name" => $request->input('name'),
-            "email" => $request->input('email'),
-            "mobile" => $request->input('mobile'),
+    function CustomerUpdate(Request $request){
+        $customer_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Customer::where('id',$customer_id)->where('user_id',$user_id)->update([
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'mobile'=>$request->input('mobile'),
         ]);
     }
 
