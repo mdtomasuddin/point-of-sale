@@ -59,11 +59,13 @@
             let id = $(this).data('id');
             await FillUpUpdateForm(id)
             $("#update-modal").modal('show');
-
-
         })
 
-      
+        $('.deleteBtn').on('click', function() {
+            let id = $(this).data('id');
+            $("#delete-modal").modal('show');
+            $("#deleteID").val(id);
+        })
 
         new DataTable('#tableData', {
             order: [
