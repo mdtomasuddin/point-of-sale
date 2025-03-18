@@ -47,10 +47,9 @@
 
 
 <script>
- 
     document.getElementById('modal-close').addEventListener('click', function() {
         document.getElementById("newImg").src = "{{ asset('images/default.jpg') }}";
-    })
+    });
 
     FillCategoryDropDown();
     async function FillCategoryDropDown() {
