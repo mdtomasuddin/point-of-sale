@@ -65,6 +65,15 @@
             $("#update-modal").modal('show');
         })
 
+        $('.deleteBtn').on('click', function() {
+            let id = $(this).data('id');
+            let path = $(this).data('path');
+
+            $("#delete-modal").modal('show');
+            $("#deleteID").val(id);
+            $("#deleteFilePath").val(path)
+
+        })
 
         new DataTable('#tableData', {
             order: [
