@@ -52,4 +52,10 @@ class InvoiceController extends Controller
             return $e->getMessage();
         }
     }
+
+    function invoice_Select(Request $request)
+    {
+        $user_id = $request->header('id');
+        return Invoice::where('user_id', $user_id)->with('customer')->get();
+    }
 }
