@@ -58,4 +58,19 @@ class InvoiceController extends Controller
         $user_id = $request->header('id');
         return Invoice::where('user_id', $user_id)->with('customer')->get();
     }
+
+    function InvoiceDetails(Request $request)
+    {
+        $user_id = $request->header('id');
+        $customerDetails = Customer::where('user_id', $user_id)->where('id', $request->input('cus_id'))->first();
+        $invoiceTotal = Invoice::where('user_id', '=', $user_id)->where('id', $request->input('inv_id'))->first();
+        $invoiceProduct = InvoiceProduct::where('invoice_id', $request->input('inv_id'))
+            ->where('user_id', $user_id)->with('product')
+            ->get();
+        return array(
+            'customer' => $customerDetails,
+            'invoice' => $invoiceTotal,
+            'product' => $invoiceProduct,
+        );
+    }
 }

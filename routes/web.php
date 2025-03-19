@@ -69,3 +69,4 @@ Route::post("/product-by-id", [ProductController::class, 'ProductByID'])->middle
 // Invoice API Route
 Route::post("/invoice-create", [InvoiceController::class, 'invoiceCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get("/invoice-select", [InvoiceController::class, 'invoice_Select'])->middleware([TokenVerificationMiddleware::class]);
+Route::post("/invoice-details", [InvoiceController::class, 'InvoiceDetails'])->middleware([TokenVerificationMiddleware::class]);
