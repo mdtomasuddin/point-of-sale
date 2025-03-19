@@ -73,4 +73,21 @@ class InvoiceController extends Controller
             'product' => $invoiceProduct,
         );
     }
+
+    function invoiceDelete(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user_id = $request->header('id');
+            InvoiceProduct::where('invoice_id', $request->input('inv_id'))
+                ->where('user_id', $user_id)
+                ->delete();
+            Invoice::where('id', $request->input('inv_id'))->delete();
+            DB::commit();
+            return 1;
+        } catch (Exception $e) {
+            DB::rollBack();
+            return 0;
+        }
+    }
 }
