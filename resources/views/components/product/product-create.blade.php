@@ -81,24 +81,21 @@
         } else {
 
             document.getElementById('modal-close').click();
-
+            
             let formData = new FormData();
             formData.append('img', productImg)
             formData.append('name', productName)
             formData.append('price', productPrice)
             formData.append('unit', productUnit)
             formData.append('category_id', productCategory)
-
             const config = {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             }
-
             showLoader();
             let res = await axios.post("/create-product", formData, config)
             hideLoader();
-
             if (res.status === 201) {
                 successToast('Request completed');
                 document.getElementById("save-form").reset();

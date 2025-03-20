@@ -12,6 +12,17 @@ use Mockery\Expectation;
 
 class InvoiceController extends Controller
 {
+
+
+    // function InvoicePage(){
+    //     return view('pages.dashboard.invoice-page');
+    // }
+
+    function SalePage()
+    {
+        return view('pages.dashboard.sale-page');
+    }
+
     function invoiceCreate(Request $request)
     {
         DB::beginTransaction();
