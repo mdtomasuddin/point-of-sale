@@ -57,14 +57,20 @@
                     <td>${item['discount']}</td>
                     <td>${item['payable']}</td>
                     <td>
-                        <button  class="viewBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm fa-eye"></i></button>
-                        <button  class="deleteBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm  fa-trash-alt"></i></button>
+                        <button class="viewBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm fa-eye"></i></button>
+                        <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="deleteBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm  fa-trash-alt"></i></button>
                     </td>
                  </tr>`
             tableList.append(row)
         })
 
-       
+   
+
+        $('.deleteBtn').on('click', function() {
+            let id = $(this).data('id');
+            document.getElementById('deleteID').value = id;
+            $("#delete-modal").modal('show');
+        })
 
         new DataTable('#tableData', {
             order: [
