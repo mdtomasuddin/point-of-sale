@@ -14,9 +14,9 @@ class InvoiceController extends Controller
 {
 
 
-    // function InvoicePage(){
-    //     return view('pages.dashboard.invoice-page');
-    // }
+    function InvoicePage(){
+        return view('pages.dashboard.invoice-page');
+    }
 
     function SalePage()
     {
